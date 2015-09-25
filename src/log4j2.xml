@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status=debug 会显示log4j2加载过程 -->
+<Configuration status="warn">
+<Appenders>
+<!-- append=true 追加写入 false  -->
+<File name="logfile" fileName="crawler.log" append="true">
+<!-- Appender只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+<!-- <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/> -->
+<!-- Appender输出格式  -->
+<PatternLayout pattern="%d{ISO8601} [%t] %-5p %c{2} %L - %m%n"/>
+</File>
+<Console name="Console" target="SYSTEM_OUT">
+<PatternLayout pattern="%d{yy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+</Console>
+</Appenders>
+<Loggers>
+<Root level="info">
+<AppenderRef ref="Console"/>
+<AppenderRef ref="logfile"/>
+</Root>
+</Loggers>
+</Configuration>
