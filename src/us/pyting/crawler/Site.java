@@ -16,6 +16,7 @@ import java.util.*;
  * @see us.pyting.crawler.processor.PageProcessor
  * @since 0.1.0
  */
+
 public class Site {
 
     private String domain;

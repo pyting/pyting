@@ -1,22 +1,32 @@
 package us.pyting.crawler.proxy;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NoSuchElementException;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.DelayQueue;
+
 import org.apache.http.HttpHost;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 import us.pyting.crawler.utils.FilePersistentBase;
 import us.pyting.crawler.utils.ProxyUtils;
-
-import java.io.*;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.DelayQueue;
 
 /**
  * Pooled Proxy Object
@@ -27,7 +37,6 @@ import java.util.concurrent.DelayQueue;
  */
 public class ProxyPool {
 
-	// private Logger logger = LoggerFactory.getLogger(getClass());
 	private static final Logger logger = LogManager.getLogger(ProxyPool.class.getName());
 	private BlockingQueue<Proxy> proxyQueue = new DelayQueue<Proxy>();
 	private Map<String, Proxy> allProxy = new ConcurrentHashMap<String, Proxy>();
